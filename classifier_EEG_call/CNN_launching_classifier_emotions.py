@@ -271,6 +271,6 @@ data_t=data_t.reshape((-1,752,30,1))
 e = model.evaluate(input_pn,hooks=[logging_hook_t])
 print("Testing Accuracy:", e['accuracy'])
 #use the .sh in the outter directory to process the performance file 
-q = Popen('/bin/sh /home/juan.mayortorres/Re_training_innv/comp_res_abs_test.sh "%s" "%s"'% (strn1[7]+"_test_"+str(strn2[0]), stdin=PIPE, stdout=PIPE, shell=True)
+q = Popen('/bin/sh cwd/comp_res_abs_test.sh "%s" "%s"'% (strn1[7]+"_test_"+str(strn2[0]), stdin=PIPE, stdout=PIPE, shell=True)
 out = q.stdout.read()
 print (out)
