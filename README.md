@@ -1,8 +1,13 @@
-# Deep Learning Emotion decoding using EEG data from Autism individuals
+## Deep Learning Emotion decoding using EEG data from Autism individuals
 
 These codes includes the python and matlab codes using for processing EEG 2D images on
 a customized Deep ConvNet to decode emotion visual stimuli on individuals with and without
 Autism Spectrum Disorder (ASD).
+
+# Requirements
+- Tensorflow > v1.20
+- sklearn
+- numpy
 
 For the python code we provide:
 
@@ -10,6 +15,8 @@ __1.__ A baseline code to evaluate a Leave-One-Trial-Out cross-validation from t
 
 ![Pipeline for EEG Emotion Decoding](https://github.com/meiyor/Deep-Learning-Emotion-Decoding-using-EEG-data-from-Autism-individuals/blob/master/pipeline_2_using_latex.jpeg)
 
+  To run the classifier pipeline simply download the .py files on the folder **classifier_EEG_call** and execute the following command
+	
 __2.__ A code for using the package the iNNvestigate package (https://github.com/albermax/innvestigate) Saliency Maps and unify them from the LOTO crossvalidation mentioned in the first item. Code is located in the folder **iNNvestigate_evaluation**
 
 For the Matlab code we provide the repository for reading the resulting output performance files for the CNN baseline classifier **Reading_CNN_performances**, and for the iNNvestigate methods **Reading_iNNvestigate_performances**
