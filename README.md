@@ -8,6 +8,7 @@ Autism Spectrum Disorder (ASD).
 - Tensorflow >= v1.20
 - sklearn
 - numpy
+- Matlab > R2018b
 
 For the python code we provide:
 
