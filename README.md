@@ -21,7 +21,9 @@ __1.__ A baseline code to evaluate a Leave-One-Trial-Out cross-validation from t
 ```python 
    python LOTO_lauch_emotions_test.py "data_path_file_including_train_test_files"
 ```
-Please be sure your .csv files has a flattened time-points x channels EEG image after you remove artifacts and noise from the signal. Using the ADJUST EEGlab pipeline preferrably (!https://sites.google.com/a/unitn.it/marcobuiatti/home/software/adjust).
+Please be sure your .csv files has a flattened time-points x channels EEG image after you remove artifacts and noise from the signal. Using the ADJUST EEGlab pipeline preferrably (https://sites.google.com/a/unitn.it/marcobuiatti/home/software/adjust).
+
+The final results will be produced in a txt file as we provide in the **examples** folder.
 
 __2.__ A code for using the package the iNNvestigate package (https://github.com/albermax/innvestigate) Saliency Maps and unify them from the LOTO crossvalidation mentioned in the first item. Code is located in the folder **iNNvestigate_evaluation**
 
