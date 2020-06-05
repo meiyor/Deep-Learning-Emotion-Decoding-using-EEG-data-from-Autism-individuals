@@ -7,7 +7,9 @@ Autism Spectrum Disorder (ASD).
 ### Requirements
 - Tensorflow >= v1.20
 - sklearn
+- subprocess
 - numpy
+- csv
 - Matlab > R2018b
 
 For the python code we provide:
