@@ -18,11 +18,8 @@ __1.__ A baseline code to evaluate a Leave-One-Trial-Out cross-validation from t
 
   To run the classifier pipeline simply download the .py files on the folder **classifier_EEG_call** and execute the following command on your bash prompt:
   
-  '''python
-require 'redcarpet'
-markdown = Redcarpet.new("Hello World!")
-puts markdown.to_html
-'''
+```python LOTO_lauch_emotions_test.py "data_path_file_including_train_test_files"
+```
 	
 __2.__ A code for using the package the iNNvestigate package (https://github.com/albermax/innvestigate) Saliency Maps and unify them from the LOTO crossvalidation mentioned in the first item. Code is located in the folder **iNNvestigate_evaluation**
 
