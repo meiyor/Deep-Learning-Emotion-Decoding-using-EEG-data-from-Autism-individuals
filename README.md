@@ -1,6 +1,6 @@
 # Deep Learning Emotion decoding using EEG data from Autism individuals
 
-These codes includes the python and matlab codes using for processing EEG 2D images on
+This repository includes the python and matlab codes using for processing EEG 2D images on
 a customized Deep ConvNet to decode emotion visual stimuli on individuals with and without
 Autism Spectrum Disorder (ASD).
 
