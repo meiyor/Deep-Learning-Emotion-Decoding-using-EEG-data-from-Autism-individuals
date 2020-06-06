@@ -309,7 +309,7 @@ input_pn = tf.estimator.inputs.numpy_input_fn(
 e = model.evaluate(input_pn,hooks=[logging_hook_t])
 print("Testing Accuracy:", e['accuracy'])
 # writing the report per each trial
-q = Popen('/bin/sh comp_res_abs_test_innvestigate.sh "%s" "%s"'% (strn1[7]+"_test_"+str(sys.argv[4]),strn2[0]), stdin=PIPE, stdout=PIPE, 
+q = Popen('/bin/sh comp_res_abs.sh.sh "%s" "%s"'% (strn1[7]+"_test_"+str(sys.argv[4]),strn2[0]), stdin=PIPE, stdout=PIPE, 
 shell=True)
 out = q.stdout.read()
 print (out)
