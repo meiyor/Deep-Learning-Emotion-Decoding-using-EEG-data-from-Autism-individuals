@@ -42,7 +42,7 @@ The value __num_method__ is defined based on the order iNNvestigate package proc
 Some average masks calculated from the iNNvestigate methods are included in **examples** folder. Each contributor or user is free to play with them.
 
 #### An example from saliency maps obtained from LRP-B preset are shown below):
-###### significant differences are observed between 750-1250 ms relative to the onset between Controls and ASD groups! 
+#### significant differences are observed between 750-1250 ms relative to the onset between Controls and ASD groups! 
 
 ![alt text](https://github.com/meiyor/Deep-Learning-Emotion-Decoding-using-EEG-data-from-Autism-individuals/blob/master/LRP-BPresetflat_Average_TD_def.jpeg)
 ![alt text](https://github.com/meiyor/Deep-Learning-Emotion-Decoding-using-EEG-data-from-Autism-individuals/blob/master/LRP-BPresetflat_Average_ASD_def.jpeg)
