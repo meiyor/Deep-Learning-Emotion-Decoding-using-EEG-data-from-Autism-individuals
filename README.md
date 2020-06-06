@@ -29,7 +29,14 @@ The final results will be produced in a txt file as we provide in the **examples
 
 __2.__ A code for using the package the iNNvestigate package (https://github.com/albermax/innvestigate) Saliency Maps and unify them from the LOTO crossvalidation mentioned in the first item. Code is located in the folder **iNNvestigate_evaluation**
 
-For the Matlab code we provide the repository for reading the resulting output performance files for the CNN baseline classifier **Reading_CNN_performances**, and for the iNNvestigate methods **Reading_iNNvestigate_performances**
+For the Matlab code we provide the repository for reading the resulting output performance files for the CNN baseline classifier **Reading_CNN_performances**, and for the iNNvestigate methods using the same command call due to the output file is composed of the same syntax.
+
+To run a performance checking download the files on **Reading_CNN_performances** folder and run the following command on your Matlab prompt sign.
+
+```matlab 
+   read_perf_CNN('suffix_file','performance_data_path')
+```
+Take into account for the results attached in the **examples** folder use the __test_t_performance_test__ suffix and the code will read the csvs automatically.
 
 ![alt text](https://github.com/meiyor/Deep-Learning-Emotion-Decoding-using-EEG-data-from-Autism-individuals/blob/master/LRP-BPresetflat_Average_TD_def.jpeg)
 ![alt text](https://github.com/meiyor/Deep-Learning-Emotion-Decoding-using-EEG-data-from-Autism-individuals/blob/master/LRP-BPresetflat_Average_ASD_def.jpeg)
