@@ -32,8 +32,14 @@ __2.__ A code for using the package the iNNvestigate package (https://github.com
 To run the investigate evaluation simply download the .py files on the folder **iNNvestigate_evaluation** and execute the following command on your bash prompt:
   
 ```python 
-   python LOTO_lauch_emotions_test.py "data_path_file_including_train_test_files"
+   python LOTO_lauch_emotions_test_innvestigate.py "data_path_file_including_train_test_files" num_method
 ```
+
+The value __num_method__ is defined based on the order iNNvestigate package process saliency maps. For our specific case the number concordance is: 
+
+'Original Image'-> 0 'Gradient' -> 1 'SmoothGrad'-> 2 'DeconvNet' -> 3 'GuidedBackprop' -> 4 'PatterNet' -> 5 'PatternAttribution' -> 6 'DeepTaylor' -> 7 'Input * Gradient' -> 8 'Integrated Gradients' -> 9 'LRP-epsilon' -> 10 'LRP-Z' -> 11 'LRP-APresetflat' -> 12 'LRP-BPresetflat' -> 13
+
+Some average masks calculated from the iNNvestigate methods are included in **examples** folder. Each contributor or user is free to play with them.
 
 #### An example from saliency maps obtained from LRP-B preset are shown below:
 
