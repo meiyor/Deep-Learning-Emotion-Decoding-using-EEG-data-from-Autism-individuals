@@ -25,7 +25,15 @@ __1.__ A baseline code to evaluate a Leave-One-Trial-Out cross-validation from t
 ```
 Please be sure your .csv files has a flattened time-points x channels EEG image after you remove artifacts and noise from the signal. Using the ADJUST EEGlab pipeline preferrably (https://sites.google.com/a/unitn.it/marcobuiatti/home/software/adjust).
 
-The final results will be produced in a txt file as we provide in the **examples** folder.
+The final results will be produced in a txt file as we provide in the **examples** folder. Some metrics obtained from a sample of 88 ADOS-2 diagnosed participants 48 controls, and 40 ASD are the following:
+
+| Metrics/Groups | FER                              | CNN                           |
+|----------------|--------|--------|--------|-------|-------|-------|-------|-------|
+|                | Acc    | Pre    | Re     | F1    | Acc   | Pre   | Re    | F1    |
+| TD             | 0.813  | 0.808  | 0.802  | 0.807 | 0.860 | 0.864 | 0.860 | 0.862 |
+| ASD*           | 0.776  | 0.774  | 0.768  | 0.771 | 0.934 | 0.935 | 0.933 | 0.934 |
+
+Face Emotion Recognition (FER) task performance is denoted as the human performance obtained when labeling the same stimuli presented to obtain the EEG activity.
 
 __2.__ A code for using the package the iNNvestigate package (https://github.com/albermax/innvestigate) Saliency Maps and unify them from the LOTO crossvalidation mentioned in the first item. Code is located in the folder **iNNvestigate_evaluation**
 
