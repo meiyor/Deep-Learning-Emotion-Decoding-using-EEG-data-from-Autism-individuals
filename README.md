@@ -34,7 +34,7 @@ For the Matlab code we provide the repository for reading the resulting output p
 To run a performance checking download the files on **Reading_CNN_performances** folder and run the following command on your Matlab prompt sign.
 
 ```matlab 
-   read_perf_CNN('suffix_file','performance_data_path')
+   read_perf_convnets_subjects('suffix_file','performance_data_path')
 ```
 Take into account for the results attached in the **examples** folder use the __test_t_performance_test__ suffix and the code will read the csvs automatically.
 
