@@ -1,5 +1,5 @@
 str_res1=$(/bin/grep -n "dict" file_report.txt)
-> read_temp_test_v1.txt
+> read_temp_test_vn.txt
 /bin/grep -n "probabilities" file_report.txt > read_temp_test_vn.txt
 str_res2=$(/bin/tail -n1 read_temp_test_vn.txt)
 nc=1
