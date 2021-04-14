@@ -4,7 +4,7 @@ This repository includes the python and matlab codes using for processing EEG 2D
 a customized Deep ConvNet to decode emotion visual stimuli on individuals with and without
 Autism Spectrum Disorder (ASD).
 
-If you would like to use this repository to replicate our experiments with this data or use your our own EEG data, please cite the following paper:
+If you would like to use this repository to replicate our experiments with this data or use your our own data, please cite the following paper, more details about this code and implementation are described there as well:
 
 **Mayor Torres, J.M. ¥**, **Clarkson, T.¥**, Hauschild, K.M., Luhmann, C.C., Lerner, M.D., Riccardi,  G., [**Facial emotions are accurately encoded in the brains of those with autism: A deep learning approach.**](https://www.biologicalpsychiatrycnni.org/article/S2451-9022(21)00107-5/fulltext) Biological Psychiatry: Cognitive Neuroscience and Neuroimaging.
 
