@@ -1,7 +1,7 @@
 # Deep Learning Emotion decoding using EEG data from Autism individuals
 
 This repository includes the python and matlab codes using for processing EEG 2D images on
-a customized Deep ConvNet to decode emotion visual stimuli on individuals with and without
+a customized Convolutional Neural Network (CNN) to decode emotion visual stimuli on individuals with and without
 Autism Spectrum Disorder (ASD).
 
 If you would like to use this repository to replicate our experiments with this data or use your our own data, please cite the following paper, more details about this code and implementation are described there as well:
