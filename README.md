@@ -65,4 +65,4 @@ To run a performance checking first download the files on **Reading_CNN_performa
 ```matlab 
    read_perf_convnets_subjects('suffix_file','performance_data_path')
 ```
-Take into account for the results attached in the **examples** folder use the __test_t_performance_test__ suffix and the code will read the csvs automatically.
+<!---Take into account for the results attached in the **examples** folder use the __test_t_performance_test__ suffix and the code will read the csvs automatically---!>
