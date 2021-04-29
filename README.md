@@ -51,7 +51,8 @@ The value __num_method__ is defined based on the order iNNvestigate package proc
 
 'Original Image'-> 0 'Gradient' -> 1 'SmoothGrad'-> 2 'DeconvNet' -> 3 'GuidedBackprop' -> 4 'PatterNet' -> 5 'PatternAttribution' -> 6 'DeepTaylor' -> 7 'Input * Gradient' -> 8 'Integrated Gradients' -> 9 'LRP-epsilon' -> 10 'LRP-Z' -> 11 'LRP-APresetflat' -> 12 'LRP-BPresetflat' -> 13
 
-#### An example from saliency maps obtained from LRP-B preset are shown below):
+#### An example from saliency maps obtained from LRP-B preset are shown below ->
+
 #### significant differences are observed on 750-1250 ms relative to the onset between the relevance of Controls and ASD groups! 
 
 ![alt text](https://github.com/meiyor/Deep-Learning-Emotion-Decoding-using-EEG-data-from-Autism-individuals/blob/master/LRP-BPresetflat_Average_TD_def.jpeg)
