@@ -60,7 +60,7 @@ The value __num_method__ is defined based on the order iNNvestigate package proc
 
 For the Matlab code we provide the repository for reading the resulting output performance files for the CNN baseline classifier **Reading_CNN_performances**, and for the iNNvestigate methods using the same command call due to the output file is composed of the same syntax.
 
-To run a performance checking first download the files on **Reading_CNN_performances** folder and run the following command on your Matlab prompt sign having the results .csv files from the folder **examples**.
+To run a performance checking first download the files on **Reading_CNN_performances** folder and run the following command on your Matlab prompt sign having the results the .csv files on a folder of your choice.
 
 ```matlab 
    read_perf_convnets_subjects('suffix_file','performance_data_path')
