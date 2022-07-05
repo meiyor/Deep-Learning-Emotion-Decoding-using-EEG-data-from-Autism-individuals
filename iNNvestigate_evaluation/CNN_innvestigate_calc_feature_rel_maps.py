@@ -1,6 +1,6 @@
 # coding: utf-8
 ## this code use keras-tensorflow backend for definying the CNN for EEG emotion recognition in the study - Mayor Torres, J.M. ¥, Clarkson, T.¥, Hauschild, K.M., Luhmann, C.C., Lerner, M.D., Riccardi, G., Facial emotions are accurately encoded in the brains of those with autism: A deep learning approach. Biological Psychiatry: Cognitive Neuroscience and Neuroimaging,(2021).
-## by: Juan Manuel Mayor-Torres
+## written by: Juan Manuel Mayor-Torres
 ##
 
 import imp
@@ -77,7 +77,6 @@ warnings.simplefilter('ignore')
 # Use utility libraries to focus on relevant iNNvestigate routines.
 # change the utils and utils_mnist depending on the iNNvestigate version
 
-eutils = imp.load_source("utils", "../utils.py")
 mnistutils = imp.load_source("utils_mnist", "../utils_mnist.py")
 
 
