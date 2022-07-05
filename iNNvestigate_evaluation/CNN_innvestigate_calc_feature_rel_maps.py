@@ -75,6 +75,8 @@ import warnings
 warnings.simplefilter('ignore')
 
 # Use utility libraries to focus on relevant iNNvestigate routines.
+# change the utils and utils_mnist depending on the iNNvestigate version
+
 eutils = imp.load_source("utils", "../utils.py")
 mnistutils = imp.load_source("utils_mnist", "../utils_mnist.py")
 
