@@ -45,13 +45,13 @@ Before running the averaging across the whole methods and the resulting relevanc
 When you check everything is order please run the following command on terminal:
   
   ```python
-     python CNN_innvestigate_calc_feature_rel_maps.py
+     python ./iNNvestigate_evaluation/CNN_innvestigate_calc_feature_rel_maps.py
   ```   
 
-To run the investigate evaluation simply download the .py files on the folder **iNNvestigate_evaluation** and execute the following command on your bash prompt:
+To subsequently run the investigate evaluation simply download the .py files on the folder **iNNvestigate_evaluation** and execute the following command on your bash prompt:
   
 ```python 
-   python LOTO_lauch_emotions_test_innvestigate.py "data_path_file_including_train_test_files" num_method
+   python ./iNNvestigate_evaluation/LOTO_lauch_emotions_test_innvestigate.py "data_path_file_including_train_test_files" num_method
 ```
 
 The value __num_method__ is defined based on the order iNNvestigate package process saliency maps. For our specific case the number concordance is: 
