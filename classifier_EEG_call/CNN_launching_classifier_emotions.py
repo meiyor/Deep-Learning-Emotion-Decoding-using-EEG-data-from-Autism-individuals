@@ -171,14 +171,14 @@ def conv_net(x_dict, n_classes, dropout, reuse, is_training):
         # Max Pooling (down-sampling) with strides of 2 and kernel size of 2
         conv1 = tf.layers.max_pooling2d(conv1, pool_size=[5, 2], strides=2)
         # add the normalization if you like or not is not necessary for the final performance achieving
-        tf.layers.LayerNormalization(axis=1, center=True, scale=True)
+        op1_norm1=tf.layers.LayerNormalization(axis=1, center=True, scale=True)
         # Convolution Layer with 64 filters and a kernel size of 20x5
         conv2 = tf.layers.conv2d(conv1, filters=64, kernel_size=[
                                  20, 5], activation=tf.nn.relu, name='conv2d')
         # Max Pooling (down-sampling) with strides of 2 and kernel size of 2
         conv2 = tf.layers.max_pooling2d(conv2, pool_size=[2, 2], strides=2)
         # add the normalization if you like or not is not necessary for the final performance achieving
-        tf.layers.LayerNormalization(axis=1, center=True, scale=True)
+        op2_norm2=tf.layers.LayerNormalization(axis=1, center=True, scale=True)
         # Convolution Layer with 128 filters and a kernel size of 5x2
         conv3 = tf.layers.conv2d(conv2, filters=128, kernel_size=[
                                  10, 2], activation=tf.nn.relu, name='conv3d')
