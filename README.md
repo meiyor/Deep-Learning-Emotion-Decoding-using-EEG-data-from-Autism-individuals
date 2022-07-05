@@ -9,7 +9,8 @@ If you would like to use this repository to replicate our experiments with this 
 **Mayor Torres, J.M. ¥**, **Clarkson, T.¥**, Hauschild, K.M., Luhmann, C.C., Lerner, M.D., Riccardi,  G., [**Facial emotions are accurately encoded in the brains of those with autism: A deep learning approach.**](https://www.sciencedirect.com/science/article/pii/S2451902221001075?via%3Dihub) Biological Psychiatry: Cognitive Neuroscience and Neuroimaging,(2021).
 
 ### Requirements
-- Tensorflow >= v1.20
+- Tensorflow >= 1.20
+- Keras 2.2
 - sklearn
 - subprocess
 - numpy
