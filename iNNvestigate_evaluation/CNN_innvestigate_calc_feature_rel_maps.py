@@ -54,7 +54,7 @@ label_test = label_test.astype('int32')
 for i in range(training_data_file.shape[0]):
              label_train[i] = training_data_file[i][num_cols-1]
              for j in range(num_cols-1):
-                 data_train[i][j] = training_data_file[i][j]
+                 data_train[i][j] = training_data_file[i][j]https://github.com/albermax/innvestigate/blob/master/examples/mnist_compare_methods.ipynb
 
 ## for test respectively..
 for i in range(1):
@@ -76,6 +76,7 @@ warnings.simplefilter('ignore')
 
 # Use utility libraries to focus on relevant iNNvestigate routines.
 # change the utils and utils_mnist depending on the iNNvestigate version
+# This may change in terms of the newer versions of iNNvestigate follow the new notesbooks here https://github.com/albermax/innvestigate/blob/master/examples/mnist_compare_methods.ipynb
 
 mnistutils = imp.load_source("utils_mnist", "../utils_mnist.py")
 
