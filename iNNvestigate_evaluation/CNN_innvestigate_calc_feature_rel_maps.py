@@ -223,6 +223,7 @@ for i, (x, y) in enumerate(test_images):
         analysis[i, aidx] = a[0]
 
         print(analysis[i,aidx],aidx) 
+        ## Here specify the output address with suffix innvestigate_results
         if not os.path.exists("/dir_address/innvestigate_results/"+strn1[7]): ## change the str index depending on the name an structure of your folder
              os.makedirs("/dir_address/innvestigate_results/"+strn1[7])
         np.savetxt("method_"+str(aidx)+".txt",np.squeeze(np.asarray(analysis[i,aidx],dtype=np.int64)),delimiter=",")
