@@ -114,7 +114,7 @@ model = keras.models.Sequential([
 ])
 
 ##performance
-scores = mnistutils.train_model(model, data, batch_size=4, epochs=30)
+scores = mnistutils.train_model(model, data, batch_size=4, epochs=300) ## we don't use early stopping criteria calculating the XAI relevance-maps
 print("Scores on test set: loss=%s accuracy=%s" % tuple(scores))
 
 
