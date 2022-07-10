@@ -1,4 +1,4 @@
-function create_whitening_bdf(time_ranges)%% use 0 to 1250 [0,1250] to compute the full range to the LPP ranges
+function create_whitening_bdf(time_ranges)%% use 0 to 1250 [0,1250] to compute the full range to the LPP ranges.
 %% create whitening images for bdf Lerner dataset
 t=linspace(-200,1550,875);
 pos1=max(find(t<=time_ranges(1)));
