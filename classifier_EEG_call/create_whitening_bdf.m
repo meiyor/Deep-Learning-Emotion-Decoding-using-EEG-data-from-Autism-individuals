@@ -37,8 +37,6 @@ for k=1:35 %% 35 subjects
                         xZCAwhite_t = U_t * diag(1./sqrt(diag(S_t) + 0.1))*U_t'*Xt;
                         Xtest_t{l_pos}(q_c,:)=reshape(xZCAwhite_t,1,32*size_d);
                     end;
-                   %Ximag(ntd,:,:)=[[abs(Xtest_t{l_pos})] ; [abs(Xtrain_t{l_pos})]];
-                   %ntd=ntd+1;
                    %% process the whitening images per subject
                     %% add the condition for folder existance
                    if ~exist(['\lerner_data\subject_' num2str(k)],'dir')
