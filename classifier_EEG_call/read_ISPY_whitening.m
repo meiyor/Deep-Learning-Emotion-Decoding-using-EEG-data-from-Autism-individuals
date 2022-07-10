@@ -300,7 +300,6 @@ for n=1:size(Ximag,1)
     temp(find(temp==0))=0.24;
     Xaveimag_fear=Xaveimag_fear+temp;
 end;
-A=1;
 %% Second processing ASDs
 nasd=1;
 for k=1:length(pp)
@@ -405,6 +404,5 @@ for k=1:length(vector_pos)
                end;
         end;
 end;
-A=1;
 
 
