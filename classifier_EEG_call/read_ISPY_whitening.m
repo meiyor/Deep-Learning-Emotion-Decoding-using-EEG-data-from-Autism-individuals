@@ -1,13 +1,17 @@
 function read_ISPY_whitening(subject_beginning,sel_conv_read,time_range,ch,map_l)
+%% use the following command
+%% read_ISPY_whitening([1 1],1,[0,1250],[1:32],[0 1]); %% if you are having problems with the parameters please contact Juan Manuel Mayor-Torres in the profile email
 load('chanloc_ref.mat','ref_chanlocs');
 t=linspace(-200,1550,875);
 pos1=max(find(t<=time_range(1)));
 pos2=min(find(t>=time_range(2)));
 size_d=length([pos1:1:pos2]);
 %% ISPY
-path='S:\JMM_EEG_data_copy\ISPY\EEG_Recording';
-%[dat_TD,dat_ASD]=behavioral_eval('ISPY_n','C:\Users\jmayortorres\Documents\EEG_main_folder\data_csvs\ISPY_DATA_LABELS_2017-11-22_1913_TD_ASD_2.csv','C:\Users\jmayortorres\Documents\EEG_main_folder\data_csvs\ISPY_DATA_LABELS_2017-11-22_1530_Performances.csv',96,7,2,6,1);
-%[dat_TD,dat_ASD]=behavioral_eval('ISPY_n','C:\Users\jmayortorres\Documents\EEG_main_folder\data_csvs\ISPY_DATA_LABELS_2017-11-22_1913_TD_ASD_2.csv','C:\Users\jmayortorres\Documents\EEG_main_folder\data_csvs\ISPY_DATA_LABELS_2018-01-15_1544_Performances.csv',96,7,2,6,1);
+%% ask this data with permission to professor Matthew D. Lerner, PhD
+path='\whereISPYis\ISPY\EEG_Recording';
+%% ask permission for this data if necessary in case you need access to the behavioral data
+%[dat_TD,dat_ASD]=behavioral_eval('ISPY_n','\EEG_main_folder\data_csvs\ISPY_DATA_LABELS_2017-11-22_1913_TD_ASD_2.csv','\EEG_main_folder\data_csvs\ISPY_DATA_LABELS_2017-11-22_1530_Performances.csv',96,7,2,6,1);
+%[dat_TD,dat_ASD]=behavioral_eval('ISPY_n','\EEG_main_folder\data_csvs\ISPY_DATA_LABELS_2017-11-22_1913_TD_ASD_2.csv','\EEG_main_folder\data_csvs\ISPY_DATA_LABELS_2018-01-15_1544_Performances.csv',96,7,2,6,1);
 close all;
 close all hidden;
 A_dir=dir(path);
@@ -40,12 +44,11 @@ happy_v=[];
 sad_v=[];
 angry_v=[];
 fear_v=[];
-%n_TD=1;
-%n_ASD=1;
+%% for across the whole subjects of ISPY dataset ~120 between TD and ASD
 for k=3+subject_beginning(1):length(A_dir)
         B_dir=dir([path '/' A_dir(k).name]);
         for p=3:length(B_dir)
-            if length(B_dir(p).name)==13 && all(B_dir(p).name=='DANVA_res.mat')
+            if length(B_dir(p).name)==13 && all(B_dir(p).name=='DANVA_res.mat') %% file configuration check this in your own set of folders
                temp_str=load([path '/' A_dir(k).name '/' B_dir(p).name]);
                if (length(temp_str.EEG_val_happy)~=0)
                     EEG_DATA{n_count}=temp_str;
@@ -137,11 +140,8 @@ for nn=1:length(pp)
           fear_ASD(asd_i)=mean(mean(squeeze(mean(squeeze(EEG_DATA{pp(nn)}.EEG_val_fear{1}.data(ch,pos1:pos2,:)),1)),2));
           asd_i=asd_i+1;
       end;
-%       happy_v(nn,:)=mean(squeeze(EEG_DATA{p(nn)}.EEG_val_happy{1}.data(ch,:,:)),2)';
-%       sad_v(nn,:)=mean(squeeze(EEG_DATA{p(nn)}.EEG_val_sad{1}.data(ch,:,:)),2)';
-%       angry_v(nn,:)=mean(squeeze(EEG_DATA{p(nn)}.EEG_val_angry{1}.data(ch,:,:)),2)';
-%       fear_v(nn,:)=mean(squeeze(EEG_DATA{p(nn)}.EEG_val_fear{1}.data(ch,:,:)),2)';
 end;
+%% plotting trials and topoplots here
 plot(t,happy./(length(EEG_DATA)-1),'b','LineWidth',4);
 hold on;
 plot(t,sad./(length(EEG_DATA)-1),'g','LineWidth',4);
@@ -233,20 +233,19 @@ colorbar
 set(gca,'FontSize',20)
 data1=[happy_TD,sad_TD,angry_TD,fear_TD];
 data2=[happy_ASD,sad_ASD,angry_ASD,fear_ASD];
-RM_ANOVA(data1,data2)
-A=1;
+%% run anova analysis here if you consider
 %% whitening image creation
-%% First TD
+%% First processing TDs
 ntd=1;
 for k=1:length(pp)
    if any(TD_index==pp(k))
     XDATA=prdataset(double(XT_DATA{pp(k)}'),[ones([1 12]) 2*ones([1 12]) 3*ones([1 12]) 4*ones([1 12])]');
      v_pos=[1:1:48];
      for l_pos=1:size(XDATA,1)
+            %% select the train and test trains in leave-one-trial-out crossvalidation modality
             Xtrain{l_pos}=XDATA(find(v_pos~=l_pos),:);
             Xtest{l_pos}=XDATA(find(v_pos==l_pos),:);
              %% PCA/ZCA whitening before sending it to Tensorflow
-             %if sel_conv_read==1 && l_pos==1 && ~exist(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet\' subject_code{vector_pos(k)}],'dir')
              if sel_conv_read==1 && l_pos==1
                     for p_c=1:size(Xtrain{l_pos}.data,1)
                         avg=mean(reshape(Xtrain{l_pos}.data(p_c,:),size_d,30),1);     % Compute the mean pixel intensity value separately for each patch. 
@@ -259,7 +258,6 @@ for k=1:length(pp)
                         xZCAwhite_tr = U_tr * diag(1./sqrt(diag(S_tr) + 0.1))*U_tr'*X;
                         Xtrain_t{l_pos}(p_c,:)=reshape(xZCAwhite_tr,1,30*size_d);
                     end;
-                    %xZCAwhite_tr
                     for q_c=1:size(Xtest{l_pos}.data,1)
                         avg=mean(reshape(Xtest{l_pos}.data(q_c,:),size_d,30),1);     % Compute the mean pixel intensity value separately for each patch. 
                         Xt=reshape(Xtest{l_pos}.data(q_c,:),size_d,30)-repmat(avg,size(reshape(Xtest{l_pos}.data(q_c,:),size_d,30),1), 1);
@@ -274,19 +272,16 @@ for k=1:length(pp)
                    Ximag(ntd,:,:)=[[abs(Xtest_t{l_pos})] ; [abs(Xtrain_t{l_pos})]];
                    ntd=ntd+1;
                    %% process the whitening images per subject
-                    %% add the condition for folder existance
-                   % if ~exist(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet\' subject_code{vector_pos(k)}],'dir')
-                   %     mkdir(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet\' subject_code{vector_pos(k)}]);
-                   %     csvwrite(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet\' subject_code{vector_pos(k)} '\data_sub_' subject_code{vector_pos(k)} '.csv'],[[abs(Xtest_t{l_pos})  getlabels(Xtest{l_pos})] ; [abs(Xtrain_t{l_pos})  getlabels(Xtrain{l_pos})]]);
-                    %if ~exist(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\' subject_code{vector_pos(k)}],'dir')
-                    %    mkdir(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\' subject_code{vector_pos(k)}]);
-                    %    csvwrite(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\' subject_code{vector_pos(k)} '\data_sub_' subject_code{vector_pos(k)} '.csv'],[[abs(Xtest_t{l_pos})  getlabels(Xtest{l_pos})] ; [abs(Xtrain_t{l_pos})  getlabels(Xtrain{l_pos})]]); 
-                  % end
+                   %% add the condition for folder existance
+                   if ~exist(['\whatever_you_define\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\TD\' subject_code{vector_pos(k)}],'dir')
+                        mkdir(['\whatever_you_define\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\TD\' subject_code{vector_pos(k)}]);
+                        csvwrite(['\whatever_you_define\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\TD\' subject_code{vector_pos(k)} '\data_sub_' subject_code{vector_pos(k)} '.csv'],[[abs(Xtest_t{l_pos})  getlabels(Xtest{l_pos})] ; [abs(Xtrain_t{l_pos})  getlabels(Xtrain{l_pos})]]); 
+                   end
                end;
         end;
    end;
 end;
-%% process the image whitening average
+%% process the image whitening average but don't save it!
 Xaveimag_happy=zeros([1 30]);
 Xaveimag_sad=zeros([1 30]);
 Xaveimag_angry=zeros([1 30]);
@@ -306,7 +301,7 @@ for n=1:size(Ximag,1)
     Xaveimag_fear=Xaveimag_fear+temp;
 end;
 A=1;
-%% Second ASD
+%% Second processing ASDs
 nasd=1;
 for k=1:length(pp)
    if any(ASD_index==pp(k))
@@ -316,7 +311,6 @@ for k=1:length(pp)
             Xtrain{l_pos}=XDATA(find(v_pos~=l_pos),:);
             Xtest{l_pos}=XDATA(find(v_pos==l_pos),:);
              %% PCA/ZCA whitening before sending it to Tensorflow
-             %if sel_conv_read==1 && l_pos==1 && ~exist(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet\' subject_code{vector_pos(k)}],'dir')
              if sel_conv_read==1 && l_pos==1
                     for p_c=1:size(Xtrain{l_pos}.data,1)
                         avg=mean(reshape(Xtrain{l_pos}.data(p_c,:),size_d,30),1);     % Compute the mean pixel intensity value separately for each patch. 
@@ -329,7 +323,6 @@ for k=1:length(pp)
                         xZCAwhite_tr = U_tr * diag(1./sqrt(diag(S_tr) + 0.1))*U_tr'*X;
                         Xtrain_t{l_pos}(p_c,:)=reshape(xZCAwhite_tr,1,30*size_d);
                     end;
-                    %xZCAwhite_tr
                     for q_c=1:size(Xtest{l_pos}.data,1)
                         avg=mean(reshape(Xtest{l_pos}.data(q_c,:),size_d,30),1);     % Compute the mean pixel intensity value separately for each patch. 
                         Xt=reshape(Xtest{l_pos}.data(q_c,:),size_d,30)-repmat(avg,size(reshape(Xtest{l_pos}.data(q_c,:),size_d,30),1), 1);
@@ -344,13 +337,10 @@ for k=1:length(pp)
                     Ximag_n(nasd,:,:)=[[abs(Xtest_t{l_pos})] ; [abs(Xtrain_t{l_pos})]];
                     nasd=nasd+1;
                     %% add the condition for folder existance
-                   % if ~exist(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet\' subject_code{vector_pos(k)}],'dir')
-                   %     mkdir(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet\' subject_code{vector_pos(k)}]);
-                   %     csvwrite(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet\' subject_code{vector_pos(k)} '\data_sub_' subject_code{vector_pos(k)} '.csv'],[[abs(Xtest_t{l_pos})  getlabels(Xtest{l_pos})] ; [abs(Xtrain_t{l_pos})  getlabels(Xtrain{l_pos})]]);
-                   % if ~exist(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\' subject_code{vector_pos(k)}],'dir')
-                   %     mkdir(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\' subject_code{vector_pos(k)}]);
-                   %     csvwrite(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\' subject_code{vector_pos(k)} '\data_sub_' subject_code{vector_pos(k)} '.csv'],[[abs(Xtest_t{l_pos})  getlabels(Xtest{l_pos})] ; [abs(Xtrain_t{l_pos})  getlabels(Xtrain{l_pos})]]); 
-                   %end
+                    if ~exist(['\whatever_you_define\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\ASD\' subject_code{vector_pos(k)}],'dir')
+                        mkdir(['\whatever_you_define\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\ASD\' subject_code{vector_pos(k)}]);
+                        csvwrite(['\whatever_you_define\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\ASD\' subject_code{vector_pos(k)} '\data_sub_' subject_code{vector_pos(k)} '.csv'],[[abs(Xtest_t{l_pos})  getlabels(Xtest{l_pos})] ; [abs(Xtrain_t{l_pos})  getlabels(Xtrain{l_pos})]]); 
+                   end
                end;
         end;
    end;
@@ -374,8 +364,7 @@ for n=1:size(Ximag_n,1)
     temp(find(temp==0))=0.24;
     Xaveimag_fear_n=Xaveimag_fear_n+temp;
 end;
-A=1;
-%% this is only to read the remaining subjects we have to evaluate the TD and ASD subjects separately in a another piece of code
+%% use this loop for processing Extra Subjects recently added in ISPY
 vector_pos=[21 24 25 30 31 33 35 36 41:50 52:66]
 for k=1:length(vector_pos)
     XDATA=prdataset(double(XT_DATA{vector_pos(k)}'),[ones([1 12]) 2*ones([1 12]) 3*ones([1 12]) 4*ones([1 12])]');
@@ -384,8 +373,7 @@ for k=1:length(vector_pos)
             Xtrain{l_pos}=XDATA(find(v_pos~=l_pos),:);
             Xtest{l_pos}=XDATA(find(v_pos==l_pos),:);
              %% PCA/ZCA whitening before sending it to Tensorflow
-             %if sel_conv_read==1 && l_pos==1 && ~exist(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet\' subject_code{vector_pos(k)}],'dir')
-             if sel_conv_read==1 && l_pos==1 && ~exist(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\' subject_code{vector_pos(k)}],'dir')
+             if sel_conv_read==1 && l_pos==1 && ~exist(['\whatever_you_define\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\' subject_code{vector_pos(k)}],'dir')
                     for p_c=1:size(Xtrain{l_pos}.data,1)
                         avg=mean(reshape(Xtrain{l_pos}.data(p_c,:),size_d,30),1);     % Compute the mean pixel intensity value separately for each patch. 
                         X=reshape(Xtrain{l_pos}.data(p_c,:),size_d,30)-repmat(avg,size(reshape(Xtrain{l_pos}.data(p_c,:),size_d,30),1), 1);
@@ -410,13 +398,10 @@ for k=1:length(vector_pos)
                         Xtest_t{l_pos}(q_c,:)=reshape(xZCAwhite_t,1,30*size_d);
                     end;
                     %% add the condition for folder existance
-                   % if ~exist(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet\' subject_code{vector_pos(k)}],'dir')
-                   %     mkdir(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet\' subject_code{vector_pos(k)}]);
-                   %     csvwrite(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet\' subject_code{vector_pos(k)} '\data_sub_' subject_code{vector_pos(k)} '.csv'],[[abs(Xtest_t{l_pos})  getlabels(Xtest{l_pos})] ; [abs(Xtrain_t{l_pos})  getlabels(Xtrain{l_pos})]]);
-                    if ~exist(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\' subject_code{vector_pos(k)}],'dir')
-                        mkdir(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\' subject_code{vector_pos(k)}]);
-                        csvwrite(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\' subject_code{vector_pos(k)} '\data_sub_' subject_code{vector_pos(k)} '.csv'],[[abs(Xtest_t{l_pos})  getlabels(Xtest{l_pos})] ; [abs(Xtrain_t{l_pos})  getlabels(Xtrain{l_pos})]]); 
-                   end
+                    if ~exist(['\whatever_you_define\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\Extra\' subject_code{vector_pos(k)}],'dir')
+                        mkdir(['\whatever_you_define\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\Extra\' subject_code{vector_pos(k)}]);
+                        csvwrite(['\whatever_you_define\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\Extra\' subject_code{vector_pos(k)} '\data_sub_' subject_code{vector_pos(k)} '.csv'],[[abs(Xtest_t{l_pos})  getlabels(Xtest{l_pos})] ; [abs(Xtrain_t{l_pos})  getlabels(Xtrain{l_pos})]]); 
+                    end
                end;
         end;
 end;
