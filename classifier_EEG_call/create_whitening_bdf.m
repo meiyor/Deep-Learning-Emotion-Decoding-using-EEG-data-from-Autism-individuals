@@ -1,17 +1,19 @@
-function create_whitening_bdf(time_ranges)
+function create_whitening_bdf(time_ranges)%% use 0 to 1250 [0,1250] to compute the full range to the LPP ranges
+%% create whitening images for bdf Lerner dataset
 t=linspace(-200,1550,875);
 pos1=max(find(t<=time_ranges(1)));
 pos2=min(find(t>=time_ranges(2)));
 size_d=(pos2-pos1)+1;
+%% ask this file with permission of prof. Matthew D. Lerner, PhD, or Juan Manuel Mayor-Torres, PhD
 DATA=load('bdf_trials_emotion_DANVA_Lerner_reDO_500.mat');
-for k=1:35
+
+for k=1:35 %% 35 subjects
     XDATA=prdataset(double([reshape(DATA.EEGk{k,1}.data(1:32,pos1:pos2,:),32*size_d,12)' ; reshape(DATA.EEGk{k,2}.data(1:32,pos1:pos2,:),32*size_d,12)' ; reshape(DATA.EEGk{k,3}.data(1:32,pos1:pos2,:),32*size_d,12)' ; reshape(DATA.EEGk{k,4}.data(1:32,pos1:pos2,:),32*size_d,12)']),[ones([1 12]) 2*ones([1 12]) 3*ones([1 12]) 4*ones([1 12])]');
      v_pos=[1:1:48];
      for l_pos=1:size(XDATA,1)
             Xtrain{l_pos}=XDATA(find(v_pos~=l_pos),:);
             Xtest{l_pos}=XDATA(find(v_pos==l_pos),:);
              %% PCA/ZCA whitening before sending it to Tensorflow
-             %if sel_conv_read==1 && l_pos==1 && ~exist(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet\' subject_code{vector_pos(k)}],'dir')
              if l_pos==1
                     for p_c=1:size(Xtrain{l_pos}.data,1)
                         avg=mean(reshape(Xtrain{l_pos}.data(p_c,:),size_d,32),1);     % Compute the mean pixel intensity value separately for each patch. 
@@ -24,7 +26,6 @@ for k=1:35
                         xZCAwhite_tr = U_tr * diag(1./sqrt(diag(S_tr) + 0.1))*U_tr'*X;
                         Xtrain_t{l_pos}(p_c,:)=reshape(xZCAwhite_tr,1,32*size_d);
                     end;
-                    %xZCAwhite_tr
                     for q_c=1:size(Xtest{l_pos}.data,1)
                         avg=mean(reshape(Xtest{l_pos}.data(q_c,:),size_d,32),1);     % Compute the mean pixel intensity value separately for each patch. 
                         Xt=reshape(Xtest{l_pos}.data(q_c,:),size_d,32)-repmat(avg,size(reshape(Xtest{l_pos}.data(q_c,:),size_d,32),1), 1);
@@ -40,14 +41,10 @@ for k=1:35
                    %ntd=ntd+1;
                    %% process the whitening images per subject
                     %% add the condition for folder existance
-                   if ~exist(['C:\Users\Marcela Murillo\Documents\Code_Matlab\lerner_data\subject_' num2str(k)],'dir')
-                        mkdir(['C:\Users\Marcela Murillo\Documents\Code_Matlab\lerner_data\subject_' num2str(k)]);
-                        csvwrite(['C:\Users\Marcela Murillo\Documents\Code_Matlab\lerner_data\subject_' num2str(k) '\data_sub_' num2str(k) '.csv'],[[abs(Xtest_t{l_pos})  getlabels(Xtest{l_pos})] ; [abs(Xtrain_t{l_pos})  getlabels(Xtrain{l_pos})]]);
-                    %if ~exist(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\' subject_code{vector_pos(k)}],'dir')
-                    %    mkdir(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\' subject_code{vector_pos(k)}]);
-                    %    csvwrite(['C:\Users\jmayortorres\Documents\EEG_main_folder\CSV_files_training_ConvNet_Whole_Trial\' subject_code{vector_pos(k)} '\data_sub_' subject_code{vector_pos(k)} '.csv'],[[abs(Xtest_t{l_pos})  getlabels(Xtest{l_pos})] ; [abs(Xtrain_t{l_pos})  getlabels(Xtrain{l_pos})]]); 
-                  % end
-               end;
+                   if ~exist(['\lerner_data\subject_' num2str(k)],'dir')
+                        mkdir(['\lerner_data\subject_' num2str(k)]);
+                        csvwrite(['\lerner_data\subject_' num2str(k) '\data_sub_' num2str(k) '.csv'],[[abs(Xtest_t{l_pos})  getlabels(Xtest{l_pos})] ; [abs(Xtrain_t{l_pos})  getlabels(Xtrain{l_pos})]]);
+                  end;
         end;
    end;
 end;
