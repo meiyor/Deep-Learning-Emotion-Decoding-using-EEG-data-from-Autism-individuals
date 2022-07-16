@@ -88,10 +88,9 @@ strn1 = str1.split('_')
 
 training_data_file = genfromtxt(csvFile1, delimiter=',', skip_header=0)
 test_data_file = genfromtxt(csvFile2, delimiter=',', skip_header=0)
-method_file = genfromtxt(csv_method, delimiter=',', skip_header=0)
+
 data_shape = "There are " + repr(training_data_file.shape[0]) + " samples of vector length " + repr(training_data_file.shape[1])
 
-method_shape = "There are " + repr(method_file.shape[0]) + " samples of vector length " + repr(method_file.shape[1])
 num_rows = training_data_file.shape[0]  # Number of data samples
 num_cols = training_data_file.shape[1]  # Length of Data Vector
 
