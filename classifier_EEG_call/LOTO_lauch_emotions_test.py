@@ -1,5 +1,4 @@
 ## generate code for LOTO processing using python and the CNN code template from FAIR using Tensorflow##
-
 import os
 import sys
 import subprocess
@@ -24,5 +23,4 @@ for root, dirnames, filenames in os.walk(str(sys.argv[1])):
                         [str(sys.argv[1]), '/', name, '/', str_test])
                     print(str1, str2)
                     # run the process the emotion decoding as a whole the stdout performance
-                    subprocess.call('python CNN_launching_classifier_emotions.py "%s" "%s" 0 "%s"' % (
-                        str1, str2, str(sys.argv[2])), shell=True)
+                    subprocess.call('python CNN_launching_classifier_emotions.py "%s" "%s" 0 "%s"' % (str1, str2, str(sys.argv[2])), shell=True)
