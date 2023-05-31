@@ -56,7 +56,7 @@ To subsequently run the investigate evaluation simply download the .py files on 
    python ./iNNvestigate_evaluation/LOTO_lauch_emotions_test_innvestigate.py "data_path_file_including_train_test_files" num_method
 ```
 
-The value __num_method__ is defined based on the order iNNvestigate package process saliency maps. For our specific case the number concordance is: 
+The value __num_method__ is defined based on the order of the iNNvestigate package process saliency maps. For our specific case the number concordance is: 
 
 'Original Image'-> 0 'Gradient' -> 1 'SmoothGrad'-> 2 'DeconvNet' -> 3 'GuidedBackprop' -> 4 'PatterNet' -> 5 'PatternAttribution' -> 6 'DeepTaylor' -> 7 'Input * Gradient' -> 8 'Integrated Gradients' -> 9 'LRP-epsilon' -> 10 'LRP-Z' -> 11 'LRP-APresetflat' -> 12 'LRP-BPresetflat' -> 13
 
@@ -70,7 +70,7 @@ The value __num_method__ is defined based on the order iNNvestigate package proc
 
 For the Matlab code we provide the repository for reading the resulting output performance files for the CNN baseline classifier **Reading_CNN_performances**, and for the iNNvestigate methods using the same command call due to the output file is composed of the same syntax.
 
-To run a performance checking first download the files on **Reading_CNN_performances** folder and run the following command on your Matlab prompt sign having the results the .csv files on a folder of your choice.
+To run a performance checking first download the files on **Reading_CNN_performances** folder and run the following command in your Matlab prompt sign having the results in the .csv files on a folder of your choice.
 
 ```matlab 
    read_perf_convnets_subjects('suffix_file','performance_data_path')
