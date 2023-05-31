@@ -58,7 +58,7 @@ To subsequently run the investigate evaluation simply download the .py files on 
 
 The value __num_method__ is defined based on the order of the iNNvestigate package process saliency maps. For our specific case the number concordance is: 
 
-'Original Image'-> 0 'Gradient' -> 1 'SmoothGrad'-> 2 'DeconvNet' -> 3 'GuidedBackprop' -> 4 'PatterNet' -> 5 'PatternAttribution' -> 6 'DeepTaylor' -> 7 'Input * Gradient' -> 8 'Integrated Gradients' -> 9 'LRP-epsilon' -> 10 'LRP-Z' -> 11 'LRP-APresetflat' -> 12 'LRP-BPresetflat' -> 13
+'Original Image'-> 0, 'Gradient' -> 1, 'SmoothGrad'-> 2, 'DeconvNet' -> 3, 'GuidedBackprop' -> 4, 'PatterNet' -> 5, 'PatternAttribution' -> 6, 'DeepTaylor' -> 7, 'Input * Gradient' -> 8, 'Integrated Gradients' -> 9, 'LRP-epsilon' -> 10, 'LRP-Z' -> 11, 'LRP-APresetflat' -> 12, 'LRP-BPresetflat' -> 13.
 
 #### An example from saliency maps obtained from LRP-B preset are shown below ->
 
