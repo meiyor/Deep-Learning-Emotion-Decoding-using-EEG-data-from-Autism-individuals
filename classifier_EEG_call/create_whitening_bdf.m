@@ -8,7 +8,7 @@ size_d=(pos2-pos1)+1;
 DATA=load('bdf_trials_emotion_DANVA_Lerner_reDO_500.mat');
 
 for k=1:35 %% 35 subjects
-    XDATA=prdataset(double([reshape(DATA.EEGk{k,1}.data(1:32,pos1:pos2,:),32*size_d,12)' ; reshape(DATA.EEGk{k,2}.data(1:32,pos1:pos2,:),32*size_d,12)' ; reshape(DATA.EEGk{k,3}.data(1:32,pos1:pos2,:),32*size_d,12)' ; reshape(DATA.EEGk{k,4}.data(1:32,pos1:pos2,:),32*size_d,12)']),[ones([1 12]) 2*ones([1 12]) 3*ones([1 12]) 4*ones([1 12])]');
+    XDATA=prdataset(double([reshape(permute(DATA.EEGk{k,1}.data(1:32,pos1:pos2,:),[2,1,3]),32*size_d,12)' ; reshape(permute(DATA.EEGk{k,2}.data(1:32,pos1:pos2,:),[2,1,3]),32*size_d,12)' ; reshape(permute(DATA.EEGk{k,3}.data(1:32,pos1:pos2,:),[2,1,3]),32*size_d,12)' ; reshape(permute(DATA.EEGk{k,4}.data(1:32,pos1:pos2,:),[2,1,3]),32*size_d,12)']),[ones([1 12]) 2*ones([1 12]) 3*ones([1 12]) 4*ones([1 12])]');
      v_pos=[1:1:48];
      for l_pos=1:size(XDATA,1)
             Xtrain{l_pos}=XDATA(find(v_pos~=l_pos),:);
