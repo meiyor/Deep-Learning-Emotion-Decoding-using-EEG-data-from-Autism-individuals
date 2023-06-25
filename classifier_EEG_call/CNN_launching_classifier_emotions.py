@@ -20,9 +20,9 @@ import gzip
 import _pickle as cPickle
 from numpy import genfromtxt
 
-#str1 = str(sys.argv[1])
-#str2 = str(sys.argv[2])
-#strn1 = str1.split('_')
+str1 = str(sys.argv[1])
+str2 = str(sys.argv[2])
+strn1 = str1.split('_')
 
 # change it for 10 or 9 depending if the folder name has a _ or you can set it up your absolute data path
 strn2 = strn1[8].split('.')
