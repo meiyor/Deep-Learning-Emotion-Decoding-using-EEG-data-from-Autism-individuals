@@ -230,7 +230,7 @@ def model_fn(features, labels, mode):
     # Evaluate the accuracy of the model
     acc_op = tf.metrics.accuracy(
         labels=labels, predictions=pred_classes, name="labels")
-    training_summary = tf.convert_to_tensor(acc_op, name="test_accuracy")
+    training_summary = tf.convert_to_tensor(acc_op, name="training_accuracy")
 
     # TF Estimators requires to return a EstimatorSpec, that specify
     # the different ops for training, evaluating, ...
