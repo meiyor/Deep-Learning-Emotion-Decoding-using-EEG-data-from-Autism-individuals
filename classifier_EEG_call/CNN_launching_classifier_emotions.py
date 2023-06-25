@@ -11,12 +11,10 @@ import os
 import logging
 from subprocess import Popen, PIPE
 import numpy as np
-import tensorflow.contrib.learn as skflow
 import tensorflow as tf
 import time
 
 import sys
-import csv
 import gzip
 import _pickle as cPickle
 from numpy import genfromtxt
