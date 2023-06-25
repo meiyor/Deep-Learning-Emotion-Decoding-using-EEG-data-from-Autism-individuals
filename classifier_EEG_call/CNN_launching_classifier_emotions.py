@@ -30,7 +30,7 @@ strn2 = strn1[8].split('.')
 # triaining and test files taking per subject specifiy these files in the LOTO cross-validation in an upper level
 csvFile1 = str(sys.argv[1])
 csvFile2 = str(sys.argv[2])
-
+csv_method= "../innvestigate_results/"+strn1[7]+"/method_average_"+str(sys.argv[4])+".txt"
 
 # set up the usage of multiple GPUs by your own in tensorflow you can modify this code depending on your suitability
 config = tf.ConfigProto(
@@ -87,6 +87,7 @@ strn1 = str1.split('_')
 
 training_data_file = genfromtxt(csvFile1, delimiter=',', skip_header=0)
 test_data_file = genfromtxt(csvFile2, delimiter=',', skip_header=0)
+method_file = genfromtxt(csv_method, delimiter=',', skip_header=0)
 
 data_shape = "There are " + repr(training_data_file.shape[0]) + " samples of vector length " + repr(training_data_file.shape[1])
 
