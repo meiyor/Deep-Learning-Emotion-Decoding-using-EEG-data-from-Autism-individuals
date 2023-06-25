@@ -256,7 +256,7 @@ label_test = label_test.astype('float32', casting='same_kind')-1
 model = tf.estimator.Estimator(model_fn, cwd+'/folder_check_points')
 
 # use this tensor template to log into the inner model for debugging
-# tensors_to_log = {"probabilities": "softmax_tensor" , "probabilities2": "argmax_tensor", "train_acc":"training_accuracy", "kernetl_t":"kernel_tensor"}
+tensors_to_log = {"probabilities": "softmax_tensor" , "probabilities2": "argmax_tensor", "train_acc":"training_accuracy", "kernetl_t":"kernel_tensor"}
 logging_hook = tf.train.LoggingTensorHook(
     tensors=tensors_to_log, every_n_iter=1)
 logging_hook_t = tf.train.LoggingTensorHook(
