@@ -276,6 +276,8 @@ data_t = data_test.reshape((-1, 752, 30, 1))
 data_t = data_t.astype('float32')
 data_t = data_t.reshape((-1, 752, 30, 1))
 
+input_pn = tf.estimator.inputs.numpy_input_fn(x={'images': data_t}, y=label_test, batch_size=batch_size, shuffle=False)
+
 # Use the Estimator 'evaluate' method
 e = model.evaluate(input_pn, hooks=[logging_hook_t])
 print("Testing Accuracy:", e['accuracy'])
