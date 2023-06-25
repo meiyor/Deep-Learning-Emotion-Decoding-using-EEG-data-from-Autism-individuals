@@ -257,19 +257,15 @@ model = tf.estimator.Estimator(model_fn, cwd+'/folder_check_points')
 
 # use this tensor template to log into the inner model for debugging
 tensors_to_log = {"probabilities": "softmax_tensor" , "probabilities2": "argmax_tensor", "train_acc":"training_accuracy", "kernetl_t":"kernel_tensor"}
-logging_hook = tf.train.LoggingTensorHook(
-    tensors=tensors_to_log, every_n_iter=1)
-logging_hook_t = tf.train.LoggingTensorHook(
-    tensors=tensors_to_log, every_n_secs=1)
+logging_hook = tf.train.LoggingTensorHook(tensors=tensors_to_log, every_n_iter=1)
+## logging_hook_t = tf.train.LoggingTensorHook(tensors=tensors_to_log, every_n_secs=1)
 
 # reshape th train data from the CSV file
 data_tr = data_train.reshape((-1, 752, 30, 1))
 
 # Define the input function, and model for training
 
-input_fn = tf.estimator.inputs.numpy_input_fn(
-    x={'images': data_tr}, y=label_train,
-    batch_size=batch_size, num_epochs=None, shuffle=True)
+input_fn = tf.estimator.inputs.numpy_input_fn(x={'images': data_tr}, y=label_train,batch_size=batch_size, num_epochs=None, shuffle=True)
 
 # Train the Model
 mtrain = model.train(input_fn, steps=num_steps, hooks=[logging_hook])
