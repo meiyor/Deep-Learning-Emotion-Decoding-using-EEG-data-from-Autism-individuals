@@ -1,6 +1,6 @@
 function read_ISPY_whitening(subject_beginning,sel_conv_read,time_range,ch,map_l)
 %% use the following command
-%% read_ISPY_whitening([1 1],1,[0,1250],[1:32],[0 1]); %% if you are having problems with the parameters please contact Juan Manuel Mayor-Torres in the profile email
+%% read_ISPY_whitening([0 1],1,[0,1250],[1:32],[0 1]); %% if you are having problems with the parameters please contact Juan Manuel Mayor-Torres in the profile email
 load('chanloc_ref.mat','ref_chanlocs');
 t=linspace(-200,1550,875);
 pos1=max(find(t<=time_range(1)));
