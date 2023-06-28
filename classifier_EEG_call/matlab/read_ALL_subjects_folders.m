@@ -1,6 +1,6 @@
 function read_ALL_subjects_folders(path)
 %% This code reads and apply the denoising and artifact rejection for all the data presented in the DANVA and ToMs dataset from StonyBrook University - Social Competence and Treatment Lab (SCTL)
-%%path: path where we can see the DANVA folders with corresponding code such as 1730006 or 1730004 etc..The .egg and the .vmrk and the .vhdr files are contained in this file. Change the '\' for '/' if you will replicate this code in Linux
+%% path: path where we can see the DANVA folders with corresponding code such as 1730006 or 1730004 etc..The .egg and the .vmrk and the .vhdr files are contained in this file. Change the '\' for '/' if you will replicate this code in Linux
 %% divide the folders inside the DANVA folders and A_dir(k).name
 A_dir=dir(path)
 np=1;
