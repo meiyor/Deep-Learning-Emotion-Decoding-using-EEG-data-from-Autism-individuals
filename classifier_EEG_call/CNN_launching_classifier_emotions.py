@@ -142,7 +142,7 @@ for i in range(1):
 
 # Training Parameters - change them if you want to tune the CNN differently
 learning_rate = 0.00001
-num_steps = 300  # for this example we dont use minimal criterion on the decoding only a minimal set of epochs on 300
+num_steps = 400  # for this example we dont use minimal criterion on the decoding only a minimal set of epochs on 400
 batch_size = 4
 
 # Network Parameters - change them if you want to tune the CNN differently.
