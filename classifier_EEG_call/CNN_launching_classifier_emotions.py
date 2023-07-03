@@ -196,7 +196,7 @@ def conv_net(x_dict, n_classes, dropout, reuse, is_training):
         # Fully connected layer (in tf contrib folder for now)
         fc1 = tf.layers.dense(fc1, 1024)
         # Apply Dropout (if is_training is False, dropout is not applied)
-        fc1 = tf.layers.dropout(fc1, rate=dropout, training=is_training)
+        fc1 = tf.layers.dropout(fc1, rate=dropout, training=is_training, seed=1234)
 
         # Output layer, class prediction
         out = tf.layers.dense(fc1, n_classes)
