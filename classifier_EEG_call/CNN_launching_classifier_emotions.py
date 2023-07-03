@@ -20,6 +20,8 @@ import gzip
 import _pickle as cPickle
 from numpy import genfromtxt
 
+tf.random.set_seed(1234)
+
 str1 = str(sys.argv[1])
 str2 = str(sys.argv[2])
 strn1 = str1.split('_')
