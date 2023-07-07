@@ -272,7 +272,7 @@ data_tr = data_train.reshape((-1, 752, 30, 1))
 
 # Define the input function, and model for training
 
-input_fn = tf.estimator.inputs.numpy_input_fn(x={'images': data_tr}, y=label_train,batch_size=batch_size, num_epochs=None, shuffle=True)
+input_fn = tf.estimator.inputs.numpy_input_fn(x={'images': data_tr}, y=label_train,batch_size=batch_size, num_epochs=None, shuffle=True/False) ##Define True or False depending on your convinience
 
 # Train the Model
 mtrain = model.train(input_fn, steps=num_steps, hooks=[logging_hook])
