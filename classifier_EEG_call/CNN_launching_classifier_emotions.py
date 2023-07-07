@@ -259,7 +259,8 @@ label_test = label_test.astype('float32', casting='same_kind')-1
 
 # Build the Estimator
 # set the model on the checkpoints directory
-model = tf.estimator.Estimator(model_fn, cwd+'/folder_check_points')
+config=tf.estimator.RunConfig(save_checkpoints_steps=10,keep_checkpoint_max=1,model_dir='./folder_check_points/',tf_random_seed=1234)
+model = tf.estimator.Estimator(model_fn, config=config)
 
 # use this tensor template to log into the inner model for debugging
 tensors_to_log = {"probabilities": "softmax_tensor" , "probabilities2": "argmax_tensor", "train_acc":"training_accuracy", "kernetl_t":"kernel_tensor"}
