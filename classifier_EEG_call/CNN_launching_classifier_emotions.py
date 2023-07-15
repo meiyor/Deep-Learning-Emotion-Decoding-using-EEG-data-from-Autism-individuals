@@ -273,12 +273,14 @@ logging_hook = tf.train.LoggingTensorHook(tensors=tensors_to_log, every_n_iter=1
 # reshape th train data from the CSV file
 data_tr = data_train.reshape((-1, 752, 30, 1))
 
+early_stopping = tf.contrib.estimator.stop_if_no_decrease_hook(model,metric_name='loss',max_steps_without_decrease=20,min_steps=20)
+
 # Define the input function, and model for training
 
 input_fn = tf.estimator.inputs.numpy_input_fn(x={'images': data_tr}, y=label_train,batch_size=batch_size, num_epochs=None, shuffle=True/False) ##Define True or False depending on your convinience
 
 # Train the Model
-mtrain = model.train(input_fn, steps=num_steps, hooks=[logging_hook])
+mtrain = model.train(input_fn, steps=num_steps, hooks=[early_stopping/logging_hook]) ## select your desired hook
 
 # Evaluate the Model
 # Define the input function for evaluating
