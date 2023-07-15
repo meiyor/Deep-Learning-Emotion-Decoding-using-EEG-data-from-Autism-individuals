@@ -227,7 +227,7 @@ def model_fn(features, labels, mode):
         return tf.estimator.EstimatorSpec(mode, predictions=pred_classes)
     
     starter_learning_rate = learning_rate
-    learning_rate_new = tf.train.exponential_decay(starter_learning_rate,tf.train.get_global_step(),20,0.96,staircase=False,name="learning_rate")
+    learning_rate_new = tf.train.exponential_decay(starter_learning_rate,tf.train.get_global_step(),20,0.95,staircase=False,name="learning_rate")
         
         # Define loss and optimizer
     loss_op = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
