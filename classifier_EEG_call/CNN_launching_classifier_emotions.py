@@ -184,7 +184,7 @@ def conv_net(x_dict, n_classes, dropout, reuse, is_training):
         conv2=tf.layers.batch_normalization(conv2,fused=False)
         op2_norm2=tf.layers.LayerNormalization(axis=2, center=False, scale=False)
         conv2=op1_norm2(conv2)     
-        # Convolution Layer with 128 filters and a kernel size of 5x2
+        # Convolution Layer with 128 filters and a kernel size of 5x2, Last convolutional layer is not necessary
         conv3 = tf.layers.conv2d(conv2, filters=128, kernel_size=[
                                  10, 2], activation=tf.nn.relu, name='conv3d')
         # Max Pooling (down-sampling) with strides of 2 and kernel size of 2
@@ -225,11 +225,14 @@ def model_fn(features, labels, mode):
     # If prediction mode, early return
     if mode == tf.estimator.ModeKeys.PREDICT:
         return tf.estimator.EstimatorSpec(mode, predictions=pred_classes)
-
+    
+    starter_learning_rate = learning_rate
+    learning_rate_new = tf.train.exponential_decay(starter_learning_rate,tf.train.get_global_step(),20,0.96,staircase=False,name="learning_rate")
+        
         # Define loss and optimizer
     loss_op = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
         logits=datn_train, labels=tf.cast(labels, dtype=tf.int32)))
-    optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
+    optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate_new)
     train_op = optimizer.minimize(loss_op,
                                   global_step=tf.train.get_global_step())
 
