@@ -54,7 +54,7 @@ label_test = label_test.astype('int32')
 for i in range(training_data_file.shape[0]):
              label_train[i] = training_data_file[i][num_cols-1]
              for j in range(num_cols-1):
-                 data_train[i][j] = training_data_file[i][j]https://github.com/albermax/innvestigate/blob/master/examples/mnist_compare_methods.ipynb
+                 data_train[i][j] = training_data_file[i][j] ####https://github.com/albermax/innvestigate/blob/master/examples/mnist_compare_methods.ipynb
 
 ## for test respectively..
 for i in range(1):
