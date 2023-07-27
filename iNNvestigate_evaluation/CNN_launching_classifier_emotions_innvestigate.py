@@ -144,8 +144,6 @@ for i in range(method_file.shape[0]):
     for j in range(num_colsm-1):
         data_m[i][j] = method_file[i][j]
 
-#data_m[data_m > 1] = 1.0
-
 # remove the more important features depending on the rate removal value
 data_m[data_m > 256] = 100
 data_m = (data_m-data_m.min())/(data_m.max()-data_m.min())
