@@ -158,9 +158,9 @@ methods = [
     ("input_t_gradient",      {},                       mnistutils.heatmap,        "Input * Gradient"),
     ("integrated_gradients",  {"reference_inputs": ri}, mnistutils.heatmap,        "Integrated Gradients"),
     ("lrp.z",                 {},                       mnistutils.heatmap,        "LRP-Z"),
-    ("lrp.epsilon",           {"epsilon": 1},           mnistutils.heatmap,        "LRP-Epsilon"),
-    ("lrp.sequential_preset_a_flat",{"epsilon": 1},     mnistutils.heatmap,       "LRP-PresetAFlat"),
-    ("lrp.sequential_preset_b_flat",{"epsilon": 1},     mnistutils.heatmap,       "LRP-PresetBFlat"),
+    ("lrp.epsilon",           {"epsilon": 0.1},           mnistutils.heatmap,        "LRP-Epsilon"),
+    ("lrp.sequential_preset_a_flat",{"epsilon": 0.1},     mnistutils.heatmap,       "LRP-PresetAFlat"),
+    ("lrp.sequential_preset_b_flat",{"epsilon": 0.1},     mnistutils.heatmap,       "LRP-PresetBFlat"),
     ("deep_lift.wrapper",     {"reference_inputs": ri}, mnistutils.heatmap,        "DeepLIFT Wrapper - Rescale"),                                                                 
     ("deep_lift.wrapper",     {"reference_inputs": ri, "nonlinear_mode": "reveal_cancel"}, mnistutils.heatmap,        "DeepLIFT Wrapper - RevealCancel")
 ]
