@@ -184,7 +184,7 @@ for method in methods:
     analyzers.append(analyzer)
 
 ##Extract the analyzer for the test set, EEG test image and the test label
-n = 4
+n = 1
 test_images = list(zip(data[2][:n], data[3][:n]))
 
 print(test_images)
