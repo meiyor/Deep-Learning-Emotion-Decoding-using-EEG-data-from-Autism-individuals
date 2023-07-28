@@ -10,7 +10,8 @@ If you would like to use this repository to replicate our experiments with this 
 
 ### Requirements
 - Tensorflow >= 1.20
-- Keras 2.2
+- Keras >= 2.2
+- innvestigate >= 1.0.9
 - sklearn
 - subprocess
 - numpy
