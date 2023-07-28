@@ -11,6 +11,7 @@ import keras
 import keras.backend
 import keras.models
 
+## only use it if you have tensorflow with GPU support
 keras.backend.tensorflow_backend._get_available_gpus()
 import innvestigate
 import innvestigate.utils as iutils
