@@ -25,7 +25,7 @@ for k=3:length(A_dir) %% subjects
                 fid=fopen([path '/' A_dir(k).name '/method_' num2str(p) '_' num2str(i) '.txt'],'r');
                 D = textscan(fid,fmt,'Delimiter',',','CollectOutput',1);
                 data=double(reshape(D{1},30,752))';
-                %[Xwh,mu,invM]=whiten(rescale(data,-1,1),0.001);
+                [Xwh,mu,invM]=whiten(rescale(data,-1,1),0.001);
                 data=rescale(data,-1,1)*invM;
                 fclose(fid);
             %    data=csvread([path '/' A_dir(k).name '/method_' num2str(p) '_' num2str(i) '.txt'],0,0);
