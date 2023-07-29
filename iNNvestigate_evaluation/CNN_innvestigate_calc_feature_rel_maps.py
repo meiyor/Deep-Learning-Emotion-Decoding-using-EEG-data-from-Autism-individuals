@@ -190,6 +190,7 @@ test_images = list(zip(data[2][:n], data[3][:n]))
 
 print(test_images)
 
+## to achieve only one output on the heatmap and graymap you must comment the lines 56, 74, 75, and 78 from the innvestigate.utils.visualization package!!** 
 analysis = np.zeros([len(test_images), len(analyzers), 752, 30, 1])
 text = []
 
@@ -227,4 +228,4 @@ for i, (x, y) in enumerate(test_images):
         ## Here specify the output address with suffix innvestigate_results
         if not os.path.exists("/dir_address/innvestigate_results/"+strn1[7]): ## change the str index depending on the name an structure of your folder
              os.makedirs("/dir_address/innvestigate_results/"+strn1[7])
-        np.savetxt("method_"+str(aidx)+".txt",np.squeeze(np.asarray(analysis[i,aidx],dtype=np.int64)),delimiter=",")
+        np.savetxt("/dir_address/innvestigate_results/"+strn1[7]+"/method_"+str(aidx)+".txt",np.squeeze(np.asarray(analysis[i,aidx],dtype=np.int64)),delimiter=",")
