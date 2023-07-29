@@ -109,7 +109,7 @@ model = keras.models.Sequential([
     keras.layers.Conv2D(128, (10, 2), activation="relu", padding="valid", kernel_initializer=keras.initializers.glorot_uniform(seed=None), bias_initializer=keras.initializers.RandomNormal(mean=0.0 , stddev=0.1, seed=None)),
     keras.layers.MaxPooling2D((2, 2),strides=(2,2),padding="valid"),
     keras.layers.Flatten(),
-    keras.layers.Dense(1024, activation="relu"),
+    keras.layers.Dense(1024),
     keras.layers.Dropout(0.25),
     keras.layers.Dense(4, activation="softmax"),
 ])
