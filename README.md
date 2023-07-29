@@ -48,7 +48,7 @@ Before running the averaging across the whole methods and the resulting relevanc
 When you check everything is order please run the following command on terminal:
   
   ```python
-     python ./iNNvestigate_evaluation/CNN_innvestigate_calc_feature_rel_maps.py
+     python ./iNNvestigate_evaluation/CNN_innvestigate_calc_feature_rel_maps.py "data_path_file_including_train_test_files"
   ```   
 
 To subsequently run the investigate evaluation simply download the .py files on the folder **iNNvestigate_evaluation** and execute the following command on your bash prompt:
