@@ -4,18 +4,11 @@ This repository includes the python and matlab codes using for processing EEG 2D
 a customized Convolutional Neural Network (CNN) to decode emotion visual stimuli on individuals with and without
 Autism Spectrum Disorder (ASD).
 
-These is are the mandatory requirements for this code repository:
-
-- **Python >= 3.6**
-- **pytorch >= 1.0**
-
-Look both packages are compatible before doing the installation.
-
 If you would like to use this repository to replicate our experiments with this data or use your our own data, please cite the following paper. More details about this code and implementation are described there as well:
 
 **Mayor Torres, J.M. ¥**, **Clarkson, T.¥**, Hauschild, K.M., Luhmann, C.C., Lerner, M.D., Riccardi,  G., [**Facial emotions are accurately encoded in the brains of those with autism: A deep learning approach.**](https://www.sciencedirect.com/science/article/pii/S2451902221001075?via%3Dihub) Biological Psychiatry: Cognitive Neuroscience and Neuroimaging,(2021).
 
-### Requirements
+### Requirements:
 - Tensorflow >= 1.20
 - Keras >= 2.2
 - innvestigate >= 1.0.9
