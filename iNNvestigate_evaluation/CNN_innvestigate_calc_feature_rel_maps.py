@@ -102,12 +102,12 @@ else:
     input_shape = (752, 30, 1)
 
 model = keras.models.Sequential([
-    keras.layers.Conv2D(32, (100, 10), activation="relu", padding="valid", kernel_initializer=keras.initializers.glorot_uniform(seed=None),bias_initializer=keras.initializers.RandomNormal(mean=0.0, stddev=0.1, seed=None),input_shape=input_shape),
-    keras.layers.MaxPooling2D((5, 2),strides=(2,2),padding="valid"),
-    keras.layers.Conv2D(64, (20, 5), activation="relu", padding="valid", kernel_initializer=keras.initializers.glorot_uniform(seed=None), bias_initializer=keras.initializers.RandomNormal(mean=0.0 , stddev=0.1, seed=None)),
-    keras.layers.MaxPooling2D((2, 2),strides=(2,2),padding="valid"),
-    keras.layers.Conv2D(128, (10, 2), activation="relu", padding="valid", kernel_initializer=keras.initializers.glorot_uniform(seed=None), bias_initializer=keras.initializers.RandomNormal(mean=0.0 , stddev=0.1, seed=None)),
-    keras.layers.MaxPooling2D((2, 2),strides=(2,2),padding="valid"),
+    keras.layers.Conv2D(32, (100, 10), activation="relu", padding="same", kernel_initializer=keras.initializers.glorot_uniform(seed=None),bias_initializer=keras.initializers.RandomNormal(mean=0.0, stddev=0.1, seed=None),input_shape=input_shape),
+    keras.layers.MaxPooling2D((5, 2),strides=(2,2),padding="same"),
+    keras.layers.Conv2D(64, (20, 5), activation="relu", padding="same", kernel_initializer=keras.initializers.glorot_uniform(seed=None), bias_initializer=keras.initializers.RandomNormal(mean=0.0 , stddev=0.1, seed=None)),
+    keras.layers.MaxPooling2D((2, 2),strides=(2,2),padding="same"),
+    keras.layers.Conv2D(128, (10, 2), activation="relu", padding="same", kernel_initializer=keras.initializers.glorot_uniform(seed=None), bias_initializer=keras.initializers.RandomNormal(mean=0.0 , stddev=0.1, seed=None)),
+    keras.layers.MaxPooling2D((2, 2),strides=(2,2),padding="same"),
     keras.layers.Flatten(),
     keras.layers.Dense(1024),
     keras.layers.Dropout(0.25),
