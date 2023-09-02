@@ -38,7 +38,7 @@ The final results will be produced in a .txt file in the output folder of your c
 |----------------	|--------	|--------	|--------	|-------	|-------	|-------	|-------	|-------	|
 |                	| Acc    	| Pre    	| Re     	| F1    	| Acc   	| Pre   	| Re    	| F1    	|
 | TD             	| 0.813  	| 0.808  	| 0.802  	| 0.807 	| 0.860 	| 0.864 	| 0.860 	| 0.862 	|
-| ASD*           	| 0.776  	| 0.774  	| 0.768  	| 0.771 	| 0.934 	| 0.935 	| 0.933 	| 0.934 	|
+| ASD*           	| 0.776  	| 0.774  	| 0.768  	| 0.771 	| **0.934** 	| **0.935** 	| **0.933** 	| **0.934** 	|
 
 Face Emotion Recognition (FER) task performance is denoted as the human performance obtained when labeling the same stimuli presented to obtain the EEG activity.
 
