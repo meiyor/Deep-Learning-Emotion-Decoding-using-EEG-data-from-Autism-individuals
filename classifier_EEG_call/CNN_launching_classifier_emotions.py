@@ -9,6 +9,9 @@ import tensorflow as tf  # use tensorflow version >v1.2 gpu support
 import stat
 import os
 import logging
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 from subprocess import Popen, PIPE
 import numpy as np
 import tensorflow as tf
@@ -41,7 +44,6 @@ config = tf.ConfigProto(
 config.gpu_options.allocator_type = 'BFC'
 config.gpu_options.allow_growth = True
 sess = tf.Session(config=config)
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 cwd = os.getcwd()
 
@@ -60,7 +62,6 @@ if os.path.exists(cwd+'/folder_check_points/eval'):
 tf.logging.set_verbosity(tf.logging.INFO)
 
 # get TF logger## for checking tensorflow version and use if for the the subsequent training session
-
 log = logging.getLogger('tensorflow')
 log.setLevel(logging.INFO)
 
