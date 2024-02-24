@@ -1,4 +1,4 @@
-function [EEGd]=BV_EEGlab_comp_all(path,k_ind,sel_ToM_Danva,l_rate_ica,steps_ica,num_channels,stim_p,p_time_range,p_time_fix,sel_exclude_EOG)
+function [EEGd]=BV_EEGlab_comp_all(path,k_ind,sel_ToM_Danva,l_rate_ica,steps_ica,num_channels,stim_p,p_time_range,p_time_fix,sel_exclude_EOG,sel_test_to_exclude)
 %% USE THIS CODE ONLY FOR CORRECTED MARKED FILES, IF THIS ARE NOT CORRECTLY MARKED THIS CODE SHOULD AVOID THAT FILES FOR DOING MARKER RECOVERY YOU SHOULD USE BV_EEGlab_QK.m!!
 %% path: Single subject BrainVision absolute path. This folder may contain .eeg, .vhdr, and .mrk files
 %% k_ind: moving average filter order using fma EEGlab function
@@ -11,6 +11,7 @@ function [EEGd]=BV_EEGlab_comp_all(path,k_ind,sel_ToM_Danva,l_rate_ica,steps_ica
 %% p_time_range: epoching time range in milliseconds, baseline will be removed from p_time_range(1) to the stim onset.
 %% p_time_fix: averaging time range for topoplot in milliseconds.
 %% sel_exclude_EOG: this selector allow you to exclude the EOG channels from the beginning of the analysis 0-> including,1 -> not including.
+%% sel_test_to_exclude: This is the trial that must be taken into account to exclude it from the pop_epoch and pop_subcomp processes
 close all;
 
 %addpath(genpath('C:\Users\psychuser\Documents\bvaio1.57')); %% use this
@@ -111,8 +112,6 @@ for i=1:length(A_dir)
         end;
         EEG{i} = pop_eegfiltnew(EEG{i},band_filter(1),band_filter(2),16500);
         
-        %rmpath(genpath('/Users/juan_m_mayor_trento/Documents/HMOproj1_ver/HMOprojectRTT/EEG/eeglab13_4_4b'))
-        %rmpath(genpath('/Users/juan_m_mayor_trento/Documents/HMOproj1_ver/HMOprojectRTT/EEG/eeglab13_4_4b/fieldtrip-20160917'))
         for k=1:num_channels-2
                 t_data=conv((1/k_ind)*ones([1 k_ind]),EEG{i}.data(k,:));
                 t_data=detrend(t_data);
@@ -145,7 +144,7 @@ for i=1:length(A_dir)
                return;
            end;
            %% validate events size in the case of DANVA-ToM data repositories
-            if length(EEG{i}.event)<3 && length(EEGtemp.event)<3
+           if length(EEG{i}.event)<3 && length(EEGtemp.event)<3
                 if (m_count>=length(stim_p))
                     EEG{i}=pop_epoch(EEG{i},{stim_p{m_count-1}},[p_time_range(1) p_time_range(2)]./1000);  
                 else
@@ -157,18 +156,43 @@ for i=1:length(A_dir)
              EEGd=[];
              break;
          end;
-         
-          %% Run ADJUST after the ICA decomposition    
+        %% set the epoch without the test trial
+        index_trial = linspace(1,size(EEG{i}.data,2),size(EEG{i}.data,2))
+        EEG_temp_Data = zeros([size(EEG{i}.data,1), size(EEG{i}.data,2), size(EEG{i}.data,3)])
+        trials_temp = EEG{i}.trials
+        EEGdata_tr = EEG{i}.data(:,index_trial ~= sel_test_to_exclude,:)
+        EEGdata_t = EEG{i}.data(:,index_trial == sel_test_to_exclude,:)
+        %% Run ADJUST after the ICA decomposition    
          if (length(size(EEG{i}.data))<3)
              EEG{i}.data= repmat(EEG{i}.data(:,:),1,1,5);
              EEG{i}.trials=5;
+         else
+             EEG{i}.data = EEGdata_tr
+             EEG_test{i} = EEG{i}
+             EEG{i}.trials =  EEG{i}.trials - 1
+             EEG_test{i}.data = repmat(EEGdata_t(:,:),1,1,5);
+             EEG_test{i}.trials=5;
          end;
+         
          [art_channels]=ADJUST(EEG{i},'report.txt');
+         [art_channels_test]=ADJUST(EEG_test{i},'report_test.txt');
          if ~(any(art_channels==1) && (any(art_channels==2)) && length(EEG{i}.chanlocs(1).labels)==3 && length(EEG{i}.chanlocs(2).labels)==3 && all(EEG{i}.chanlocs(1).labels=='Fp1') && all(EEG{i}.chanlocs(2).labels=='Fp2'))
                 EEG{i}=pop_subcomp(EEG{i},[art_channels 1 2]); %% force to remove the frontal channels subcomps if the are included in the list of artifact channels
+                EEG_test{i}=pop_subcomp(EEG_test{i},[art_channels_test 1 2]); %% force to remove the frontal channels subcomps if the are included in the list of artifact channels
          else
                 EEG{i}=pop_subcomp(EEG{i},art_channels);
+                EEG_test{i}=pop_subcomp(EEG_test{i},art_channels_test);
          end;
+         %% re-add the test trial
+         EEG_test{i}.data = mean(EEG_test{i}.data,3)
+         EEG_to_reallocate = EEG{i}.data
+         EEG{i}.data = EEG_temp_Data
+         for index_data = 1:sel_test_to_exclude-1
+             EEG{i}.data(:,index_data,:) = EEG_to_reallocate(:,index_data,:)
+         EEG{i}.data(:,sel_test_to_exclude,:) = EEG_test{i}.data
+         for index_data = sel_test_to_exclude:size(EEG_temp_Data,2)
+             EEG{i}.data(:,index_data+1,:) = EEG_to_reallocate(:,index_data,:)
+         
          EEG{i}=pop_rmbase(EEG{i},[p_time_range(1)  0]);
          t=linspace(p_time_range(1),p_time_range(2),size(EEG{i}.data,2));
          figure;
