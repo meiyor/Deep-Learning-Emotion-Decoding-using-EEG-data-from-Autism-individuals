@@ -1,0 +1,19 @@
+function EEGstruct=EEGlabstructure_def(EEGstruct,EEGdata,EEGdata_h,EEGdata_p,timet,subj,runj)
+EEGstruct.setname=[subj '-' runj];
+EEGstruct.filename=['EEG_rec.mat'];
+EEGstruct.filepath=[subj '-' runj '/EEG_rec.mat'];
+EEGstruct.subject=subj;
+EEGstruct.nbchan=size(EEGdata,1);
+EEGstruct.trials=1;
+EEGstruct.pnts=size(EEGdata,2);
+EEGstruct.pntsh=size(EEGdata_h,2);
+EEGstruct.pntsp=size(EEGdata_p,2);
+EEGstruct.srate=250;
+EEGstruct.xmin=timet(1);
+EEGstruct.xmax=timet(end);
+EEGstruct.times=timet;
+EEGstruct.data=EEGdata;
+EEGstruct.ref='common';
+EEGstruct=pop_editset(EEGstruct,'chanlocs','pos_10_20_for_Mater.loc','icaweights',[]);
+EEGstruct.chanlocs=readlocs('pos_10_20_for_Mater.loc');
+
