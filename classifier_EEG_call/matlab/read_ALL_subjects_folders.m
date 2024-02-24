@@ -4,11 +4,13 @@ function read_ALL_subjects_folders(path)
 %% divide the folders inside the DANVA folders and A_dir(k).name
 A_dir=dir(path)
 np=1;
+%% depends when the DANVA path start
 for k=3:length(A_dir)
      if exist([path '\' A_dir(k).name])==7 && length(A_dir(k).name)>=3 && ~exist([[path '/' A_dir(k).name] '\DANVA_res.mat'],'file') %&& isempty(strt.EEG_tom_correct)%&& ~exist([[path '/' A_dir(k).name] '\DANVA_res.mat'],'file') %&& length(A_dir(k).name)<=6
              fclose all;
              [path '\' A_dir(k).name]
              k
+             %% here  we need to be careful to define the test trial that is separated from the rest before doing the EEG preprocessing
              EEG_val_happy=BV_EEGlab_comp_all([path '\' A_dir(k).name],10,0,1e-5,40,32,{'S  1','S  2','S 11','S 12'},[-200 1550],[750 1200],1);
              EEG_val_sad=BV_EEGlab_comp_all([path '\' A_dir(k).name],10,0,1e-5,40,32,{'S  3','S  4','S 13','S 14'},[-200 1550],[750 1200],1);
              EEG_val_angry=BV_EEGlab_comp_all([path '\' A_dir(k).name],10,0,1e-5,40,32,{'S  5','S  6','S 15','S 16'},[-200 1550],[750 1200],1);
