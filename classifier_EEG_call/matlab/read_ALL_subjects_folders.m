@@ -16,7 +16,7 @@ for k=3:length(A_dir)
              EEG_val_sad=BV_EEGlab_comp_all([path '\' A_dir(k).name],10,0,1e-5,40,32,{'S  3','S  4','S 13','S 14'},[-200 1550],[750 1200],1,trial);
              EEG_val_angry=BV_EEGlab_comp_all([path '\' A_dir(k).name],10,0,1e-5,40,32,{'S  5','S  6','S 15','S 16'},[-200 1550],[750 1200],1,trial);
              EEG_val_fear=BV_EEGlab_comp_all([path '\' A_dir(k).name],10,0,1e-5,40,32,{'S  7','S  8','S 17','S 18'},[-200 1550],[750 1200],1,trial);
-             %% remember to save the DANVA results file with the suffix of test trial to take into account in the ZCA code
+             %% remember to save the DANVA results file with the suffix of test trial to take it into account in the ZCA code
              save([[path '/' A_dir(k).name] '\DANVA_res_' num2str(trial) '.mat'],'EEG_val_happy','EEG_val_sad','EEG_val_angry','EEG_val_fear');
              fclose all;
              EEG_tom_correct=BV_EEGlab_comp_all([path '\' A_dir(k).name],10,1,1e-5,40,32,{'S202'},[-200 1550],[750 1200],1,trial); 
