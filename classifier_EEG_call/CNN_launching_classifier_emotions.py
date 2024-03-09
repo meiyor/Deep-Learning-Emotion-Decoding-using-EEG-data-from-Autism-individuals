@@ -287,6 +287,7 @@ mtrain = model.train(input_fn, steps=num_steps, hooks=[early_stopping/logging_ho
 # Define the input function for evaluating
 data_t = data_test.reshape((-1, 752, 30, 1))
 data_t = data_t.astype('float32')
+# reshape in case it will be necessary
 data_t = data_t.reshape((-1, 752, 30, 1))
 
 input_pn = tf.estimator.inputs.numpy_input_fn(x={'images': data_t}, y=label_test, batch_size=batch_size, shuffle=False)
