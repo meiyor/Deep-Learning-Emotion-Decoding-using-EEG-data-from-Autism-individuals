@@ -30,7 +30,7 @@ __1.__ A baseline code to evaluate a Leave-One-Trial-Out cross-validation from t
 ```python 
    python ./classifier_EEG_call/LOTO_lauch_emotions_test.py "data_path_file_including_train_test_files"
 ```
-Please be sure your .csv files has a flattened time-points x channels EEG image after you remove artifacts and noise from the signal. Using the ADJUST EEGlab pipeline preferrably (https://sites.google.com/a/unitn.it/marcobuiatti/home/software/adjust).
+Please be sure your .csv files has a flattened time-points x channels EEG image after you remove artifacts and noise from the signal. Using the ADJUST EEGlab pipeline preferrably (https://www.nitrc.org/projects/adjust/).
 
 The final results will be produced in a .txt file in the output folder of your choice. Some metrics obtained from a sample of 88 ADOS-2 diagnosed participants 48 controls, and 40 ASD are the following:
 
