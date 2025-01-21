@@ -6,7 +6,7 @@ Autism Spectrum Disorder (ASD).
 
 If you would like to use this repository to replicate our experiments with this data or use your our own data, please cite the following paper. More details about this code and implementation are described there as well:
 
-**Mayor Torres, J.M. ¥**, **Clarkson, T.¥**, Hauschild, K.M., Luhmann, C.C., Lerner, M.D., Riccardi,  G., [**Facial emotions are accurately encoded in the brains of those with autism: A deep learning approach.**](https://www.sciencedirect.com/science/article/pii/S2451902221001075?via%3Dihub) Biological Psychiatry: Cognitive Neuroscience and Neuroimaging,(2021).
+**Mayor Torres, J.M. ¥**, **Clarkson, T.¥**, Hauschild, K.M., Luhmann, C.C., Lerner, M.D., Riccardi,  G., [**Facial emotions are accurately encoded in the brains of those with autism: A deep learning approach.**](https://www.sciencedirect.com/science/article/pii/S2451902221001075?via%3Dihub) Biological Psychiatry: Cognitive Neuroscience and Neuroimaging,(2022).
 
 ### Requirements:
 - Tensorflow >= 1.20
