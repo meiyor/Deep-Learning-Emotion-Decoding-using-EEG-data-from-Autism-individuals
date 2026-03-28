@@ -118,7 +118,7 @@ for i=1:length(A_dir)
                 EEG{i}.data(k,:)=t_data(k_ind/2:t_size+(k_ind/2-1));
         end;
         if (str2num(Str{end}(end-1:end))>=1)
-           EEG{i}=clean_rawdata(EEG{i},5,[0.25 0.75],0.85,-1,-1,-1);
+           EEG{i}=clean_rawdata(EEG{i},5,[0.25 0.75],0.85,-1, 20,-1);
         end;
          %EEGd{m_count}.data(32:33,:,:)=zeros([2 size(EEG{i}.data,2) size(EEG{i}.data,3)]);
          if l_rate_ica==0 && steps_ica==0
